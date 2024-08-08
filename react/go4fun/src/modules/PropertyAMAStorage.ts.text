@@ -1,0 +1,32 @@
+
+import {PersoStorage} from "./PersoStorage";
+
+export interface PropertyAMAConversation {
+    conversationId: string;
+    messages: string[];
+}
+
+export class PropertyAMAStorage {
+    private key: string;
+
+    public constructor(propertyId: string, userId: string, memberId?: string) {
+        this.key = memberId ? `propertyAMA-${propertyId}`;
+        this.checkLogInAndOut(propertyId, userId, memberId);
+        PersoStorage.cleanUpExpiration();
+    }
+
+    public async getConversation(): Promise<PropertyAMAConversation | null> {
+        const data = await PersoStorage.getItem(this.key);
+        return data ? JSON.parse(data) as PropertyAMAConversation : null;
+    }
+
+    public async setConversation(conversation: PropertyAMAConversation): Promise<void> {
+        const now = new Date();
+        const expiration = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+        PersoStorage.setItem(this.key, JSON.stringify(conversation), expiration);
+    }
+
+    private checkLogInAndOut(propertyId: string, userId: string, memberId?: string) {
+        // Assume this function checks if the user is logged in or out
+    }
+}
