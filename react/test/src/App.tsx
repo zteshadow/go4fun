@@ -1,9 +1,9 @@
 import React from 'react';
-import DC from "./modules/JockerInClass";
+import { JokerInHook } from "./modules/JockerInHook";
 
 function App() {
   return (
-    <DC />
+      <JokerInHook.DC />
   );
 }
 
