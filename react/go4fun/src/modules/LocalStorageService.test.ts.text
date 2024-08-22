@@ -1,0 +1,25 @@
+import { compress, decompress, base64ToBytes, bytesToBase64 } from './LocalStorageService';
+import { TextEncoder, TextDecoder } from 'util';
+
+describe('LocalStorageService', () => {
+    it('should call httpService.post with correct values', async () => {
+        const data = 'hello AIDE, hello AIDE, hello AIDE, hello AIDE';
+        console.log('data', data, data.length);
+        const compressedData = compress(data);
+        console.log('==> compressedData', compressedData, compressedData.length);
+        const decompressedData = decompress(compressedData);
+        expect(decompressedData).toEqual(data);
+    });
+
+    it('should convert base64 to bytes and vice versa', () => {
+        const string = bytesToBase64(new TextEncoder().encode("a Ā 𐀀 文 🦄"));
+        //const string = 'hello';
+        console.log(`===> string: ${string}, len: ${string.length}`);
+        const uint8Data = new TextEncoder().encode(string);
+        console.log(`===> uint8Data: ${uint8Data}, len: ${uint8Data.length}`);
+        const base64 = bytesToBase64(uint8Data);
+        console.log(`===> base 64: ${base64}, len: ${base64.length}`);
+        console.log(typeof base64);
+        expect(base64).toEqual('YSDEgCDwkICAIOaWhyDwn6aE');
+    });
+});

@@ -1,0 +1,17 @@
+
+export namespace PersoStorage {
+    export async function setItem(key: string, value: string, expiration?: Date): Promise<void> {
+        localStorage.setItem(`llmChat-${key}`, value);
+    }
+
+    export async function getItem(key: string): Promise<string | null> {
+        return localStorage.getItem(`llmChat-${key}`);
+    }
+
+    export async function removeItem(key: string): Promise<void> {
+        localStorage.removeItem(`llmChat-${key}`);
+    }
+
+    export function cleanUpExpiration() {
+    }
+}

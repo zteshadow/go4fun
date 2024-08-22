@@ -1,0 +1,66 @@
+import globalState from './GlobalState';
+import brotli from 'brotli-wasm';
+import { LLMConversationMessageModel } from '../types/LLMChatWidgetType';
+import { TextEncoder, TextDecoder } from 'util';
+
+export function base64ToBytes(base64: string): Uint8Array {
+    const binString = Buffer.from(base64, 'base64').toString();
+    return Uint8Array.from(binString, (m) => m.codePointAt(0));
+}
+
+export function bytesToBase64(bytes: Uint8Array): string {
+    const binString = Array.from(bytes, (byte) =>
+        String.fromCodePoint(byte),
+    ).join("");
+    return Buffer.from(binString).toString('base64');
+}
+
+const uint8ArrayToBase64 = (u8Arr: Uint8Array): string => u8Arr.toString('base64');
+
+export const compress = (data: string): string => {
+    const arrayData = new TextEncoder().encode(data); // encode string -> Uint8Array
+    console.log('arrayData', arrayData, arrayData.length);
+    const compressedData = brotli.compress(arrayData); // compress Uint8Array -> Uint8Array
+    console.log('compressedData', compressedData, compressedData.length);
+    const stringData = compressedData.toString('base64');
+    console.log(`===> compressedData to string: ${stringData}, len: ${stringData.length}`);
+    return stringData; // decode Uint8Array -> string
+};
+
+export const decompress = (data: string): string => {
+    console.log('decompress: data', data, data.length);
+    const arrayData = base64ToBytes(data); // encode string -> Uint8Array
+    console.log('decompress arrayData', arrayData, arrayData.length);
+    const decompressedData = brotli.decompress(arrayData); // decompress Uint8Array -> Uint8Array
+    console.log('decompressedData', decompressedData, decompressedData.length);
+    const decoder = new TextDecoder('utf-8');
+    console.log(
+        'decompressedData to string',
+        decoder.decode(decompressedData),
+        decoder.decode(decompressedData).length
+    );
+    return decoder.decode(decompressedData); // decode Uint8Array -> string
+};
+
+const LocalStorageService = {
+    getChatHistory(): LLMConversationMessageModel[] {
+        const historyJson = localStorage.getItem(globalState.getStorageKey());
+        if (historyJson) {
+            return JSON.parse(historyJson);
+        }
+        return [];
+    },
+    async setChatHistory(chatHistory: LLMConversationMessageModel[]): void {
+        if (chatHistory.length <= 0) {
+            return;
+        }
+        try {
+            const stringData = JSON.stringify(chatHistory);
+            const compressedData = compress(stringData);
+            localStorage.setItem(globalState.getStorageKey(), compressedData);
+        } catch (error) {
+            console.log('Error while compressing data', error);
+        }
+    },
+};
+export { LocalStorageService, compress };
