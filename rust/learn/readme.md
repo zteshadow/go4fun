@@ -6,6 +6,7 @@ cargo init // init for current src code
 cargo build // build project, you can find the target at ./target/debug/xxx, --release to generate release version
 cargo run // build and run
 cargo check // build without generate binary
+cargo doc --open // open doc for API using in project
 ```
 
 # Compile
