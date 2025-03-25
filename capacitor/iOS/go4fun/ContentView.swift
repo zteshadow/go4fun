@@ -8,15 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+    // 1
+        @State private var isPresentWebView = false
+
+        var body: some View {
+            Button("Open WebView") {
+                // 2
+                isPresentWebView = true
+
+            }
+            .sheet(isPresented: $isPresentWebView) {
+                NavigationStack {
+                    // 3
+                    GFWebview(url: URL(string: "https://www.google.com")!)
+
+                        .ignoresSafeArea()
+                        .navigationTitle("Go 4 Fun")
+                        .navigationBarTitleDisplayMode(.inline)
+                }
+            }
         }
-        .padding()
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {

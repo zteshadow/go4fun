@@ -14,6 +14,7 @@
 		7E875D112D92412100335B96 /* go4funTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E875D102D92412100335B96 /* go4funTests.swift */; };
 		7E875D1B2D92412100335B96 /* go4funUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E875D1A2D92412100335B96 /* go4funUITests.swift */; };
 		7E875D1D2D92412100335B96 /* go4funUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E875D1C2D92412100335B96 /* go4funUITestsLaunchTests.swift */; };
+		7EF5AF9C2D924A2400120003 /* GFWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF5AF9B2D924A2400120003 /* GFWebview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		7E875D162D92412100335B96 /* go4funUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = go4funUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E875D1A2D92412100335B96 /* go4funUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = go4funUITests.swift; sourceTree = "<group>"; };
 		7E875D1C2D92412100335B96 /* go4funUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = go4funUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7EF5AF9B2D924A2400120003 /* GFWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFWebview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		7E875CFE2D92411D00335B96 /* go4fun */ = {
 			isa = PBXGroup;
 			children = (
+				7EF5AF9A2D9246AD00120003 /* web */,
 				7E875CFF2D92411D00335B96 /* go4funApp.swift */,
 				7E875D012D92411D00335B96 /* ContentView.swift */,
 				7E875D032D92412000335B96 /* Assets.xcassets */,
@@ -125,6 +128,14 @@
 				7E875D1C2D92412100335B96 /* go4funUITestsLaunchTests.swift */,
 			);
 			path = go4funUITests;
+			sourceTree = "<group>";
+		};
+		7EF5AF9A2D9246AD00120003 /* web */ = {
+			isa = PBXGroup;
+			children = (
+				7EF5AF9B2D924A2400120003 /* GFWebview.swift */,
+			);
+			path = web;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +270,7 @@
 			files = (
 				7E875D022D92411D00335B96 /* ContentView.swift in Sources */,
 				7E875D002D92411D00335B96 /* go4funApp.swift in Sources */,
+				7EF5AF9C2D924A2400120003 /* GFWebview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
