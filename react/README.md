@@ -1,6 +1,7 @@
 # Create new project with TS
 ```bash
 yarn create react-app go4fun --template typescript
+npm create vite@latest go4fun -- --template react-ts  
 ```
 # Clear to `Hello world`
 
