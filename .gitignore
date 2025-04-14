@@ -2,3 +2,6 @@ webpack/dist
 webpack/node_modules
 rust/learn/projects/hello_cargo/target
 rust/learn/projects/guessting_game/target
+capacitor/iOS/go4fun.xcodeproj/xcuserdata
+capacitor/react/node_modules
+capacitor/iOS/go4fun.xcodeproj/project.xcworkspace/xcuserdata
